@@ -21,5 +21,16 @@ Route::get('/planets', function () {
         ],
     ];
 
-    return view('planets', ['planets' => $planets]);
+    // Zet de array om in een collection
+    $collection = collect($planets);
+
+    // Check of er een GET-parameter 'planeet' aanwezig is
+    if (request()->has('planeet')) {
+        $planeetNaam = request('planeet'); // haal de waarde op
+        // filter de collection
+        $collection = $collection->where('name', $planeetNaam);
+    }
+
+    // return de view met de (gefilterde) planeten
+    return view('planets', ['planeten' => $collection->values()]);
 });

@@ -5,12 +5,17 @@
 </head>
 <body>
     <h1>Planets List</h1>
-    <ul>
-        @foreach($planets as $planet)
-            <li>
-                <strong>{{ $planet['name'] }}</strong>: {{ $planet['description'] }}
-            </li>
-        @endforeach
-    </ul>
+
+    @if(count($planeten) > 0)
+        <ul>
+            @foreach($planeten as $planet)
+                <li>
+                    <strong>{{ $planet['name'] }}</strong>: {{ $planet['description'] }}
+                </li>
+            @endforeach
+        </ul>
+    @else
+        <p>Geen planeten gevonden.</p>
+    @endif
 </body>
 </html>
